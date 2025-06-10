@@ -997,10 +997,10 @@ Function SubLoop()
     }
     else if(CurrentCP =='Lab_BigRoomDone')
     {
-        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23377.5762, -5673.4341, -4301.8501),Rot(0, -17632, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(,0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
-        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23850.9941, -4863.2378, -4301.8496),Rot(0, -6619, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(,0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
-        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23248.8262, -2088.1570, -4301.8501),Rot(0, -21109, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(,0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();                
-        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-24142.0098, -612.3654, -4121.1729),Rot(0, -7365, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(,0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
+        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23377.5762, -5673.4341, -4301.8501),Rot(0, -17632, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
+        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23850.9941, -4863.2378, -4301.8496),Rot(0, -6619, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
+        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-23248.8262, -2088.1570, -4301.8501),Rot(0, -21109, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();                
+        ET().CreateEnemy(Class'OLEnemySoldier',Vect(-24142.0098, -612.3654, -4121.1729),Rot(0, -7365, 0),'Dodge',true).SetStaticEnemyValues().SetEnemySpeed(0,10,450).SetEnemyAttackAndDoor().SetEnemyVisionAndHearing(EVT_EPEule).SetEnemyInvestigation();
     }
     else if(CurrentCP =='Lab_BigTowerDone')
     {
