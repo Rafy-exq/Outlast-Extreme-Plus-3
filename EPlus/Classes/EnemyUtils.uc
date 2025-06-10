@@ -610,6 +610,12 @@ Function EnemyUtils NoHide(bool Enable =true)
     return self;
 }
 
+function EnemyUtils SetLocationAndRotation(Vector v, Rotator r){
+    Enemy.SetLocation(v);
+    Enemy.SetRotation(r);
+    return self;
+}
+
 Function Kill(Optional OLEnemyPawn P) 
 {
     local OLEnemyPawn E;

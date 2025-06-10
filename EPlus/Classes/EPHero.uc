@@ -1295,7 +1295,7 @@ private Function HeroLoop()
         SetPlayerSpeed(55,110,350);
         SetJumpPunishment(60, 4);
         SetTimer(1, false, 'OtherLoop');
-        SetTimer(170, false, 'KillSelf');
+        SetTimer(160, false, 'KillSelf');
         SetTimer(0.1, true, 'HeroSubLoop');
     }
     else if(validateCP('Male_SprinklerOn'))
@@ -2362,7 +2362,7 @@ Exec Function Cords(bool View =false)
     }
     else
     {
-        Controller.CopyToClipBoard("Vect(" $Location.X $"," @Location.Y $"," @Location.Z $") || Rot(" $Rotation.Pitch $"," @Rotation.Yaw $"," @Rotation.Roll $")");
+        Controller.CopyToClipBoard("Vect(" $Location.X $"," @Location.Y $"," @Location.Z $")\nRot(" $Rotation.Pitch $"," @Rotation.Yaw $"," @Rotation.Roll $")");
     }
 }
 
