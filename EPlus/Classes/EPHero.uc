@@ -23,16 +23,19 @@ Function PossessedBy(Controller C, Bool bVehicleTransition)
 Event PostBeginPlay()
 {
     Super.PostBeginPlay();
+    SetTimer(0.02, false, 'HeroStatics');
+    SetTimer(0.017, false, 'CPController');
     if (Class'OLUtils'.static.IsPlayingDLC()){
-        SetTimer(0.017, false, 'CPController');
-        SetTimer(0.02, false, 'HeroStatics');
+        SetTimer(0.01, true, 'WBEL');
+        SetTimer (0.125, true, 'WBHL');
+    }
+    else{
         SetTimer(0.09, true, 'EnemyLoop');
         SetTimer(0.125, true, 'HeroLoop');
     }
-    else{
-
-    }
 }
+
+/********** MainGame  **********/
 
 /**********Enemy Functions**********/
 private Function EnemyLoop()
@@ -1741,6 +1744,8 @@ private Function OtherLoop()
 {
     Local OLDoor Door;
     Local OLBed Bed;
+    
+    // open normally
     if(CurrentCP =='Admin_SecurityRoom' || CurrentCP =='Prison_PrisonFloor_SecurityRoom1' || CurrentCP =='Prison_PrisonFloor02_SecurityRoom2' || CurrentCP =='Male_Chase' || CurrentCP =='Male_ChasePause' || CurrentCP =='Male_SprinklerOff' || CurrentCP =='Female_KeyPickedup' || CurrentCP =='Female_3rdFloor' || CurrentCP =='Female_FoundCam' || CurrentCP =='Revisit_Soldier1' || CurrentCP =='Revisit_Mezzanine')
     {
         ForEach AllActors(Class'OLDoor', Door)
@@ -1884,6 +1889,17 @@ private Function OtherLoop()
             Door.BreakDoor(self,false);
         }
     }
+    else if(CurrentCP =='Hospital_2ndFloor_ToLab'){
+        foreach AllActors(Class'OLDoor', Door){
+            if (Inrange(Vect(9727.2402, 8659.3535, 1098.1500), Door.Location, 100)){
+                Door.bLocked =true;
+                continue;
+            }
+            Door.bDontBreak =false;
+            Door.bAlwaysBreak =false;
+        }
+    }
+    
 }
 
  Function CPController()
@@ -1951,6 +1967,47 @@ private function ContextualCP(Name CP){
 
 function CPBack(Name CP){
     ContextualCP(Class'CPList'.static.GetPreviousCP(CP));
+}
+
+/********** WB **********/
+
+// Enemy related functions
+
+private function WBEL(){
+    local OLEnemyPawn P;
+
+    if (currentCP =='Hospital_2ndFloor_ToLab'){
+        if (!cb1 && SpecialMove ==SMT_AutomaticSqueeze){
+            cb1 =true;
+            GlobalEnemy =ET().CreateEnemy(Class'OLEnemySurgeon', Vect(9644.5244, 9721.6152, 1098.1129), Rot(0, -16456, 0),)
+            .SetStaticEnemyValues()
+            .SetEnemySpeed(0, 750, 650)
+            .SetEnemyInvestigation(,,,,,5,1,1,10,,0.0)
+            .SetEnemyAttackAndDoor(,,,,,,,,,,50)
+            .SetEnemyVisionAndHearing(EVT_EPEule)
+            .getEnemy();
+            OtherLoop();
+        }
+        if (GlobalEnemy !=none) {ET(GlobalEnemy).EnemySpeedUp(1.75);}
+    }
+}
+
+// Hero related functions
+
+private function WBHL(){
+    if (ValidateCP('Hospital_2ndFloor_ToLab')){
+        cb1 =false;
+        SetPlayerSpeed(55,150,330);
+        SetJumpPunishment(101, 0.02);
+    }
+    else if(ValidateCP('Hospital_2ndFloor_Start_Lab_2nd')){
+        if (cb1){
+            cb1 =false;
+            Controller.Kill(GlobalEnemy);
+        }
+        SetPlayerSpeed(55,150,330);
+        SetJumpPunishment(101, 0.02);
+    }
 }
 
 /********** Event Chains **********/
@@ -2310,7 +2367,7 @@ Function HeroStatics()
     Controller.FirstSurgeonFindableCheckpoint='Male_TortureDone';
     if(Controller.NumBatteries > 1)
     {
-        Controller.NumBatteries = 0;
+       Controller.NumBatteries = 0;
     }    
 }
 
