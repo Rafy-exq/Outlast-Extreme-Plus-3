@@ -15,6 +15,31 @@ var Vector2D ViewportCurrentSize;
 var Transient OLCheatManager CheatManager;
 var Class<OLCheatManager> CheatClass;
 
+exec function CPI(int index){
+    local bool wb;
+    local string c;
+    local Array<Name> cps;
+
+    wb =Class'OLUtils'.static.IsPlayingDLC();
+    cps =class'CPList'.static.GetCPList(wb);
+    c =string(cps[index]);
+    cp(c);
+}
+
+exec function dummy(){
+    Class'EnemyUtils'.static.init().CreateEnemy(Class'OLEnemyGenericPatient', EPHero(Pawn).Location, rot(0,0,0)).EquippWeapon(weapon_knife).getEnemy().NumOfDoorBashLoops=0;
+}
+
+exec function test(){
+    local OLLedgeMarker ledge;
+    foreach AllActors(class'OLLedgeMarker', ledge){
+        ledge.bCanLedgeWalk =false;
+        ledge.bCanLedgeHang =false;
+        ledge.bCanClimbUp =false;
+        ledge.bCanDropDown =false;
+        ledge.bCanSlide =false;
+    }
+}
 exec function Reload(){
     if(class'OLUtils'.static.IsPlayingDLC()){
         CP("Hospital_Free");
@@ -119,7 +144,8 @@ Exec Function CP(String Checkpoint, Bool Save=true) {
         StartNewGameAtCheckpoint(Checkpoint, Save);
     }
     else{
-        SendMsg("Du hasts vermurgst...");
+        SendMsg("Invalid CP:"@CheckPoint);
+        CopyToClipboard(CheckPoint);
     }
 }
 

@@ -23,10 +23,15 @@ Function PossessedBy(Controller C, Bool bVehicleTransition)
 Event PostBeginPlay()
 {
     Super.PostBeginPlay();
-    SetTimer(0.017, false, 'CPController');
-    SetTimer(0.02, false, 'HeroStatics');
-    SetTimer(0.09, true, 'EnemyLoop');
-    SetTimer(0.125, true, 'HeroLoop');
+    if (Class'OLUtils'.static.IsPlayingDLC()){
+        SetTimer(0.017, false, 'CPController');
+        SetTimer(0.02, false, 'HeroStatics');
+        SetTimer(0.09, true, 'EnemyLoop');
+        SetTimer(0.125, true, 'HeroLoop');
+    }
+    else{
+
+    }
 }
 
 /**********Enemy Functions**********/
@@ -2237,16 +2242,18 @@ Function HeroStatics()
     NVLightZoomedInOuterAngle=5;
     NVLightZoomedInRadius=1500;
     NVLightZoomedInBrightness=0.025;
-    DarkLightBrightnessDefault=0.01;
-    DarkLightRadiusDefault=100;
-    DarkLightBrightnessNoCamcorder=0.03;
-    DarkLightRadiusNoCamcorder=175;
-    DarkLightBrightnessBothHandsNeeded=0.03;
-    DarkLightRadiusBothHandsNeeded=125;
-    DarkLightBrightnessAttacked=0.025;
-    DarkLightRadiusAttacked=140;
-    DarkLightBrightnessParrying=0.015;
-    DarkLightRadiusParrying=140;
+    if (!Controller.bFB){
+        DarkLightBrightnessDefault=0.01;
+        DarkLightRadiusDefault=100;
+        DarkLightBrightnessNoCamcorder=0.03;
+        DarkLightRadiusNoCamcorder=175;
+        DarkLightBrightnessBothHandsNeeded=0.03;
+        DarkLightRadiusBothHandsNeeded=125;
+        DarkLightBrightnessAttacked=0.025;
+        DarkLightRadiusAttacked=140;
+        DarkLightBrightnessParrying=0.015;
+        DarkLightRadiusParrying=140;
+    }
     NVGlitchTimeThreshold=25;
     NVGlitchMaxDelayStart=8;
     NVGlitchMaxDelayEnd=5;
