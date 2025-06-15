@@ -16,7 +16,7 @@ static final function bool IsCP(name CP){
 /**
  * returns the name of the previous Checkpoint.
  * Previous meaning the Checkpoint that would have been reached before the given one in an normal playthrough.
- * If the given Checkpoint is the first of either WB or the Maingame, 'error' is returned.
+ * If the given Checkpoint is the first of either WB or the MainGame, 'error' is returned.
  * @param StartCP: The Checkpoint name to determine which Checkpoint is the previous one.
  * @return The name of the previous Checkpoint.
  */
@@ -58,9 +58,9 @@ Static final Function Array<Name> GetFullCPList(){
 
 /**
  * Checks if the given Checkpoint has/could have an encounter with an attacking enemy, 
- * What counts as an enemypart is subjective, please adjust the function to your needs.
+ * What counts as an enemy part is subjective, please adjust the function to your needs.
  * @param CP: the name to check against.
- * @return true if the name is defined as an chasecp.
+ * @return true if the name is defined as a ChaseCP.
  */
 static final function bool ISChaseCP(Name CP){
     local Array<Name> ChaseList;
@@ -131,7 +131,7 @@ static final function bool ISChaseCP(Name CP){
 
 /**
  * Getter for a list of Checkpoint names of either MainGame or WB. Sorted in chronological order.
- * @param WB: if true get the WB Checkpoint names. If false Maingame ones.
+ * @param WB: if true get the WB Checkpoint names. If false MainGame ones.
  * @return Array<name>
  */
 Static final Function Array<Name> GetCPList(bool WB =false){

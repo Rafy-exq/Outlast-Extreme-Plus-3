@@ -7,7 +7,7 @@ class EnemyUtils extends Object;
 
 /* Enum values mend  to be used for setting visionparameters in SetEnemyVisionAndHearing.
  * Except for EVT_Normal and EVT_Trippled, all tags give enemies clear sight in the darkness.
- * EVT_Normal: Default visionparameters ( most likelly from OLEnemyPawn).
+ * EVT_Normal: Default visionparameters ( most likely from OLEnemyPawn).
  * EVT_EPDefault: WB Extreme Plus 2 vision parameters, high viewing angle, not quite 360 degree.
  * EVT_Trippled: all numeric values of the parameters are multiplied by 3.
  * EVT_EPEule: Full 360 degree view.
@@ -60,7 +60,7 @@ function EnemyUtils CreateRandomEnemy(Vector V, Rotator R, name Tag ='EPEnemy', 
     return self;
 }
 
-// Spawns an enemy determened by the parameter enemyclass
+// Spawns an enemy determined by the parameter EnemyClass
 function EnemyUtils CreateEnemy(Class<OLEnemyPawn> EnemyClass, Vector V, Rotator R, name Tag ='EPEnemy', bool CreateWithCollision =true){
     local OLBot B;
     
@@ -115,7 +115,7 @@ function EnemyUtils setModel(SkeletalMesh sk){
     return self;
 }
 
-// Setter for Behaviortree
+// Setter for BehaviorTree
 function EnemyUtils setBehavior(OLBTBehaviorTree behavior){
     Enemy.BehaviorTree = behavior;
     return self;
